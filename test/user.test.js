@@ -35,7 +35,7 @@ describe('Creating a User', function() {
   it('should throw an error on invalid name', function(done) {
     db.user.create({
       email: 'test@test.co',
-      name: '',
+      name: 'Muttbuncher',
       password: 'password'
     }).then(function(newUser) {
       done(newUser);
