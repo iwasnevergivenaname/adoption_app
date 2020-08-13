@@ -35,7 +35,7 @@ describe('Creating a User', function() {
   it('should throw an error on invalid name', function(done) {
     db.user.create({
       email: 'test@test.co',
-      name: 'Muttbuncher',
+      name: '',
       password: 'password'
     }).then(function(newUser) {
       done(newUser);
@@ -77,7 +77,7 @@ describe('User instance methods', function() {
   describe('validPassword', function() {
     it('should validate a correct password', function(done) {
       db.user.findOne().then(function(user) {
-        if (user.validPassword('123123123')) {
+        if (user.validPassword('password')) {
           done();
         } else {
           done(user);
