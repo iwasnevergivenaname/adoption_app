@@ -1,36 +1,36 @@
+const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const db = require('../models');
-
-// passport serializes information to make login easier
-
+/* Passport "serialize" your info make it easier to login
+  - Convert the user based on the id
+*/
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
-
-// passport deserialized user takes id and looks up in database
+// Passport "deserializeUser" is going to take the id and look that
+// up in the database
 passport.deserializeUser((id, cb) => {
-  cb(null, id)
-  .catch(cb());
+  cb(null, user.id)
+  .catch(cb);
+  db.user.findByPk(id)
+  .then(user => {
+    cb(null, user)
+  }).catch(cb);
 });
-
-// pass localStrategy into passport
 passport.use(new localStrategy({
-    // looks for these
-    usernameField: 'email',
-    passwordField: 'password'
-  // pass in and search db
-  }, (email, password, cb) => {
-    db.user.findOne({
-      where: {email}
-    })
-    // return a user
-    .then(user => {
-      if (!user || !user.validPassword(password)) {
-        cb(null, false);
-      } else {
-        cb(null, user);
-      }
-    })
-    .catch(cb());
-  }
-));
+  usernameField: 'email',
+  passwordField: 'password'
+}, (email, password, cb) => {
+  db.user.findOne({
+    where: { email }
+  })
+  .then(user => {
+    if (!user || !user.validPassword(password)) {
+      cb(null, false);
+    } else {
+      cb(null, user);
+    }
+  })
+  .catch(cb);
+}));
+module.exports = passport;

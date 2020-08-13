@@ -3,12 +3,14 @@ const express = require('express');
 const layouts = require('express-ejs-layouts');
 const session = require('express-session');
 const SECRET_SESSION = process.env.SECRET_SESSION;
+const passport = require('./config/ppConfig');
 const app = express();
+const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 // secret is what we give back to user to use on site (session cookie)
@@ -18,7 +20,11 @@ app.use(session({
   resave: false,
   // if new session with no change, save
   saveUninitialized: true
-}))
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.get('/', (req, res) => {
   res.render('index');
