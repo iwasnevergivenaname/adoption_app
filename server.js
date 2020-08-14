@@ -25,9 +25,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use((req, res, next) => {
+//   before every route we will attach our current user to res.local
+  res.local.alerts = req.flash();
+  res.local.currentUser = req.user;
+  next();
+});
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {alert: req.flash()});
 });
 
 app.get('/profile', (req, res) => {

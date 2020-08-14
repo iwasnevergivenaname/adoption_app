@@ -26,7 +26,7 @@ passport.use(new localStrategy({
   })
   .then(user => {
     if (!user || !user.validPassword(password)) {
-      cb(null, false);
+      cb(error, null);
     } else {
       cb(null, user);
     }
