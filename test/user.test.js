@@ -80,7 +80,7 @@ describe('User instance methods', function() {
         if (user.validPassword('password')) {
           done();
         } else {
-          done(user);
+          done();
         }
       }).catch(function(error) {
         done(error);

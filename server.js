@@ -7,6 +7,9 @@ const passport = require('./config/ppConfig');
 const app = express();
 const flash = require('connect-flash');
 
+//require authorization of middleware
+const isLoggedIn = require('./middleware/isLoggedIn');
+
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
@@ -27,16 +30,16 @@ app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
 //   before every route we will attach our current user to res.local
-  res.local.alerts = req.flash();
-  res.local.currentUser = req.user;
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
   next();
 });
 
 app.get('/', (req, res) => {
-  res.render('index', {alert: req.flash()});
+  res.render('index', {alerts: req.flash()});
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 });
 

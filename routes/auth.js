@@ -42,12 +42,13 @@ router.post('/signup', (req, res) => {
   });
 });
 
-router.post('/login', (passport.authenticate('local', {
+
+router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/auth/login',
   successFlash: 'welcome back',
   failureFlash: 'either password or email incorrect'
-})));
+}));
 
 
 router.get('/logout', (req, res) => {
