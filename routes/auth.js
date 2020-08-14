@@ -32,19 +32,19 @@ router.post('/signup', (req, res) => {
     } else {
       console.log(`this email already in use, please use different email or log in`);
       console.log(`error with user signup`, error);
-      req.flash('error', 'email already in use')
+      req.flash('error', 'email already in use');
       res.redirect('/auth/signup');
     }
   })
   .catch(error => {
-    req.flash('error', `error with sign up ${error}`)
+    req.flash('error', `error with sign up ${error}`);
     res.redirect('/auth/signup');
   });
 });
 
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/profile',
   failureRedirect: '/auth/login',
   successFlash: 'welcome back',
   failureFlash: 'either password or email incorrect'

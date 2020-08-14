@@ -47,7 +47,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 app.use('/auth', require('./routes/auth'));
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4200;
 const server = app.listen(port, () => {
   console.log(`🎧 You're listening to the smooth sounds of port ${port} 🎧`);
 });
