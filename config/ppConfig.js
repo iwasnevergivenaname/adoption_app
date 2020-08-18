@@ -18,11 +18,11 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use(new localStrategy({
-  usernameField: 'email',
+  usernameField: 'username',
   passwordField: 'password'
-}, (email, password, cb) => {
+}, (username, password, cb) => {
   db.user.findOne({
-    where: {email}
+    where: {username}
   })
   .then(user => {
     if (!user || !user.validPassword(password)) {

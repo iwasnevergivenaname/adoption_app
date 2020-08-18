@@ -14,15 +14,16 @@ router.get('/login', (req, res) => {
 router.post('/signup', (req, res) => {
   console.log(req.body);
   db.user.findOrCreate({
-    where: {email: req.body.email},
+    where: {username: req.body.username},
     defaults: {
       name: req.body.name,
+      email: req.body.email,
       password: req.body.password
     }
   })
   .then(([user, created]) => {
     if (created) {
-      console.log(`a new user named ${user.name} was created`);
+      console.log(`a new user named ${user.name}(${user.username}) was created`);
       // flash message
       passport.authenticate('local', {
         successRedirect: '/',
@@ -30,9 +31,9 @@ router.post('/signup', (req, res) => {
       })(req, res);
       // before passport authenticate
     } else {
-      console.log(`this email already in use, please use different email or log in`);
+      console.log(`this username already in use, please choose different username`);
       console.log(`error with user signup`, error);
-      req.flash('error', 'email already in use');
+      req.flash('error', 'username already in use');
       res.redirect('/auth/signup');
     }
   })
@@ -47,7 +48,7 @@ router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/auth/login',
   successFlash: 'welcome back',
-  failureFlash: 'either password or email incorrect'
+  failureFlash: 'either password or username incorrect'
 }));
 
 
