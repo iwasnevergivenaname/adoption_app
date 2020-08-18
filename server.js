@@ -46,23 +46,23 @@ app.use((req, res, next) => {
 //   method: 'POST',
 //   body: dataString
 // };
-
-const headers = {
-  'Authorization': `Bearer ${ACCESS_TOKEN}`
-};
-
-const options = {
-  url: 'GET',
-  headers: headers
-};
-
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body);
-  }
-}
-
-request(options, callback);
+//
+// const headers = {
+//   'Authorization': `Bearer ${ACCESS_TOKEN}`
+// };
+//
+// const options = {
+//   url: 'GET',
+//   headers: headers
+// };
+//
+// function callback(error, response, body) {
+//   if (!error && response.statusCode == 200) {
+//     console.log(body);
+//   }
+// }
+//
+// request(options, callback);
 
 
 app.get('/', (req, res) => {
@@ -74,23 +74,14 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', {user: req.user});
 });
 
-app.get('/search', (req, res) => {
-  res.render('search');
-});
-
-app.get('/show', (req, res) => {
-  res.render('show');
-});
 
 // app.get('/profile', (req, res) => {
 //   res.render('profile', {user: req.user});
 // });
 
-app.get('/details', (req, res) => {
-  res.render('details');
-});
 
 app.use('/auth', require('./routes/auth'));
+app.use('/animals', require('./routes/animals'));
 
 const port = process.env.PORT || 4200;
 const server = app.listen(port, () => {
