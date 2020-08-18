@@ -1,16 +1,16 @@
 {
   "development": {
-    "database": "authapp_development",
+    "database": "adoption_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "authapp_test",
+    "database": "adoption_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "authapp_production",
+    "database": "adoption_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

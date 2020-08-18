@@ -24,6 +24,15 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    username: {
+      type: DataTypes.STRING,
+      validates: {
+        len: {
+          args: [3-30],
+          msg: 'username must be between 3 and 30 characters'
+        }
+      }
+    },
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -40,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'password must be between 8 and 99 characters'
         }
       }
+    },
+    bio: {
+      type: DataTypes.TEXT,
+      validates: {}
     }
   }, {
     sequelize,
@@ -63,6 +76,5 @@ module.exports = (sequelize, DataTypes) => {
     delete userData.password;
     return userData;
   };
-
   return user;
 };

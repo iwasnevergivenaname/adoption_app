@@ -22,7 +22,7 @@ describe('Creating a User', function() {
 
   it('should throw an error on invalid email addresses', function(done) {
     db.user.create({
-      email: 'test',
+      email: 't',
       name: 'Brian',
       password: 'password'
     }).then(function(newUser) {
