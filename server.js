@@ -40,18 +40,24 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/test', (req, res) => {
+app.get('/search', (req, res) => {
   let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
   axios.post('https://api.petfinder.com/v2/oauth2/token', d)
   .then(accessToken => {
     console.log(accessToken.data.access_token);
     const H =
       "Bearer " + accessToken.data.access_token;
-    console.log(H);
-    const options = {method: 'GET', headers: {'Authorization': H}, url: "https://api.petfinder.com/v2/animals"};
+    let qs = {
+      params: {
+        s: req.query.animalSearch,
+      },
+    };
+    const options = {method: 'GET', headers: {'Authorization': H}, url: "https://api.petfinder.com/v2/animals", qs};
     axios(options)
     .then(response => {
       console.log(response.data.animals);
+      let animalSearch = response.data.animals
+      res.render('animals/search', {animalSearch})
     })
     .catch(error => {
       console.log(`error with 2nd api call ${error}`);
@@ -62,19 +68,68 @@ app.get('/test', (req, res) => {
   });
 });
 
+// https://api.petfinder.com/v2/animals?type=dog&page=2
+
 app.get('/', (req, res) => {
   console.log(res.locals.alerts);
   res.render('index', {alerts: res.locals.alerts});
 });
 
+//
+// app.get("/results", (req, res) => {
+//   // qs means query string
+//   let qs = {
+//     params: {
+//       s: req.query.titleSearch,
+//       apikey: API_KEY,
+//     },
+//   };
+//   axios
+//   .get("http://www.omdbapi.com", qs)
+//   .then((response) => {
+//     console.log(response.data);
+//     let searchResults = response.data.Search;
+//     res.render("results", { searchResults });
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+// });
+//
+// app.get("/movies/:id", (req, res) => {
+//   let qs = {
+//     params: {
+//       i: req.params.id,
+//       apikey: API_KEY,
+//     },
+//   };
+//   axios
+//   .get("http://www.omdbapi.com", qs)
+//   .then((response) => {
+//     let movieDetails = response.data;
+//     res.render("detail", { movieDetails });
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', {user: req.user});
 });
-
-app.get('/test', (req, res) => {
-  res.redirect('/');
-});
-
 
 
 app.use('/auth', require('./routes/auth'));

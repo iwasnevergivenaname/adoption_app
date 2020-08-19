@@ -1,12 +1,12 @@
 <h3>this is the show page</h3>
 
-<!--<% if (searchResults) { %> <% searchResults.forEach(a => {%>-->
-<!--    <div>-->
-<!--        <a href="/details/<%= a.animalId %> ">-->
-<!--            <h2><%= a.breed %></h2>-->
-<!--            <img src="<%=a.imageurl%>" alt="animal image" />-->
-<!--        </a>-->
-<!--    </div>-->
-<!--<% }); %> <% } else { %>-->
-<!--    <div>nothing found</div>-->
-<!--<% } %>-->
+<% if (searchResults) { %> <% searchResults.forEach(a => {%>
+    <div>
+        <a href="/details/<%= a.animalId %> ">
+            <h2><%= a.breed %></h2>
+            <img src="<%=a.imageurl%>" alt="animal image" />
+        </a>
+    </div>
+<% }); %> <% } else { %>
+    <div>nothing found</div>
+<% } %>
