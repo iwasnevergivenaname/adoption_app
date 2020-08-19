@@ -41,18 +41,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/animals/search', (req, res) => {
-  // let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
-  // axios.post('https://api.petfinder.com/v2/oauth2/token', d)
-  // .then(accessToken => {
-  //   const H =
-  //     "Bearer " + accessToken.data.access_token;
-  //   const options = {method: 'GET', headers: {'Authorization': H}, url: "https://api.petfinder.com/v2/animals"};
-  //   axios(options)
-  //   .then(response => {
-  //     let animalResults = response.data.animals;
-  res.render('animals/search'
-    // , {animalResults}
-  );
+  res.render('animals/search');
 });
 // .catch(error => {
 //   console.log(`error with 2nd api call ${error}`);
@@ -117,7 +106,6 @@ app.get('/details/:id', (req, res) => {
     .then((response) => {
       console.log(response.data);
       let animalDetails = response.data.animal;
-      console.log(animalDetails.primary_photo_cropped.full);
       res.render("details", {animalDetails});
     })
     .catch((err) => {
@@ -126,72 +114,30 @@ app.get('/details/:id', (req, res) => {
   });
 });
 
-
-//
-//   res.render('animals/details');
-// });
-
-// https://api.petfinder.com/v2/animals?type=dog&page=2
-// let qs = {
-//   params: {
-//     s: req.query.animalSearch
-//   },
-// };
-// console.log(qs.params.s);
-
 app.get('/', (req, res) => {
   console.log(res.locals.alerts);
   res.render('index', {alerts: res.locals.alerts});
 });
 
-//
-// app.get("/results", (req, res) => {
-//   // qs means query string
-//   let qs = {
-//     params: {
-//       s: req.query.titleSearch,
-//       apikey: API_KEY,
-//     },
-//   };
-//   axios
-//   .get("http://www.omdbapi.com", qs)
-//   .then((response) => {
-//     console.log(response.data);
-//     let searchResults = response.data.Search;
-//     res.render("results", { searchResults });
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// });
-//
-// app.get("/movies/:id", (req, res) => {
-//   let qs = {
-//     params: {
-//       i: req.params.id,
-//       apikey: API_KEY,
-//     },
-//   };
-//   axios
-//   .get("http://www.omdbapi.com", qs)
-//   .then((response) => {
-//     let movieDetails = response.data;
-//     res.render("detail", { movieDetails });
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// });
-
-// app.get('/show', (req, res) => {
-//   res.render('animals/show');
-// });
-
+app.get('/saved', (req, res) => {
+   db.pet.create({
+     name: req.body.name,
+     type: req.body.type,
+     gender: req.body.gender,
+     age: req.body.age,
+     articleId: req.body.articleId
+}).then(response => {
+  // console.log(`was this pet created? ${created}`);
+  console.log(response.get());
+}).catch(error =>{
+  console.log(error);
+})
+  // res.render('saved', {user: req.body.user})
+})
 
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', {user: req.user});
 });
-
 
 app.use('/auth', require('./routes/auth'));
 app.use('/animals', require('./routes/animals'));

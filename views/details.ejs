@@ -2,34 +2,55 @@
 
 <div>
     <h2><%= animalDetails.name %> </h2>
-    <img src="<%= animalDetails.primary_photo_cropped.full  %> " alt="cute pic" />
+    <img src="<%= animalDetails.primary_photo_cropped.full %> " alt="cute pic"/>
 </div>
 <div id="details">
     <span>species:</span> <%= animalDetails.species %>
-    <hr />
-    <span>breeds:</span> <%= animalDetails.breeds.primary %>
-    <hr />
+    <hr/>
+    <span>breeds:</span> <%= animalDetails.breeds.primary %> & <%= animalDetails.breeds.secondary %>
+    <hr/>
     <span>age:</span> <%= animalDetails.age %>
-    <hr />
+    <hr/>
     <span>gender:</span> <%= animalDetails.gender %>
-    <hr />
+    <hr/>
     <span>size:</span> <%= animalDetails.size %>
-    <hr />
+    <hr/>
     <span>coat:</span> <%= animalDetails.coat %>
-    <hr />
+    <hr/>
     <span>colors:</span> <%= animalDetails.colors.primary %> & <%= animalDetails.colors.primary %>
-    <hr />
+    <hr/>
+    <span>good around children:</span> <%= animalDetails.environment.children %>
+    <hr/>
+    <span>good around dogs:</span> <%= animalDetails.environment.dogs %>
+    <hr/>
+    <span>good around cats:</span> <%= animalDetails.environment.cats %>
+    <hr/>
     <span>spayed/neutered:</span> <%= animalDetails.attributes.spayed_neutered %>
-    <hr />
+    <hr/>
     <span>house trained:</span> <%= animalDetails.attributes.house_trained %>
-    <hr />
+    <hr/>
     <span>declawed:</span> <%= animalDetails.attributes.declawed %>
-    <hr />
+    <hr/>
     <span>special needs:</span> <%= animalDetails.attributes.special_needs %>
-    <hr />
+    <hr/>
     <span>shots current:</span> <%= animalDetails.attributes.shots_current %>
-    <hr />
-    <span>description:</span> <%= animalDetails.description %>
-    <hr />
+    <hr/>
+    <a href="<%= animalDetails.url %>">
+        <span>description:</span> <%= animalDetails.description %>
+        <hr/>
+    </a>
+    <span>contact:</span> email <%= animalDetails.contact.email %> or call
+    <%= animalDetails.contact.phone %>
+    <hr/>
+</div>
+
+<div>
+    <form method="POST" action="/saved">
+        <input hidden type="text" name="name" value="<%= animalDetails.name %>">
+        <input hidden type="text" name="type" value="<%= animalDetails.type %>">
+        <input hidden type="text" name="gender" value="<%= animalDetails.gender %>">
+        <input hidden type="text" name="age" value="<%= animalDetails.age %>">
+        <input type="hidden" name="userId" value="<%= animalDetails.userId %>">
+        <button type="submit"></button>
 
 </div>
