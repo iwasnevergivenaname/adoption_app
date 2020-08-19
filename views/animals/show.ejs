@@ -1,12 +1,19 @@
 <h3>this is the show page</h3>
 
-<% if (searchResults) { %> <% searchResults.forEach(a => {%>
+<% if (searchResults) { %> <% searchResults.forEach(animal => {%>
     <div>
-        <a href="/details/<%= a.animalId %> ">
-            <h2><%= a.breed %></h2>
-            <img src="<%=a.imageurl%>" alt="animal image" />
+
+        <a href="/details/<%= animal.id %> ">
+            <h2><%= animal.name %> is <%= animal.age %> age and  <%= animal.size %> sized</h2>
         </a>
+
     </div>
 <% }); %> <% } else { %>
     <div>nothing found</div>
 <% } %>
+
+<!--primary_photo_cropped: {-->
+<!--small: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/48823347/1/?bust=1597863559&width=300',-->
+<!--medium: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/48823347/1/?bust=1597863559&width=450',-->
+<!--large: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/48823347/1/?bust=1597863559&width=600',-->
+<!--full: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/48823347/1/?bust=1597863559'-->

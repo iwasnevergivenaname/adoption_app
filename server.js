@@ -40,35 +40,104 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/search', (req, res) => {
+app.get('/animals/search', (req, res) => {
+  // let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
+  // axios.post('https://api.petfinder.com/v2/oauth2/token', d)
+  // .then(accessToken => {
+  //   const H =
+  //     "Bearer " + accessToken.data.access_token;
+  //   const options = {method: 'GET', headers: {'Authorization': H}, url: "https://api.petfinder.com/v2/animals"};
+  //   axios(options)
+  //   .then(response => {
+  //     let animalResults = response.data.animals;
+  res.render('animals/search'
+    // , {animalResults}
+  );
+});
+// .catch(error => {
+//   console.log(`error with 2nd api call ${error}`);
+// });
+// })
+// .catch(error => {
+//   console.log(`error with 1st api call ${error}`);
+// });
+// })
+// ;
+
+app.get("/show", (req, res) => {
+  // qs means query string
+  let qs = {
+    params: {
+      s: req.query.animalSearch,
+    },
+  };
+  console.log(qs.params.s);
   let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
   axios.post('https://api.petfinder.com/v2/oauth2/token', d)
   .then(accessToken => {
-    console.log(accessToken.data.access_token);
     const H =
       "Bearer " + accessToken.data.access_token;
-    let qs = {
-      params: {
-        s: req.query.animalSearch,
-      },
+    const options = {
+      method: 'GET',
+      headers: {'Authorization': H},
+      url: "https://api.petfinder.com/v2/animals?type=" + qs.params.s + "&page=4"
     };
-    const options = {method: 'GET', headers: {'Authorization': H}, url: "https://api.petfinder.com/v2/animals", qs};
     axios(options)
-    .then(response => {
-      console.log(response.data.animals);
-      let animalSearch = response.data.animals
-      res.render('animals/search', {animalSearch})
+    // .get("https://api.petfinder.com/v2/animals", qs)
+    .then((response) => {
+      let searchResults = response.data.animals;
+      console.log(searchResults);
+      // console.log(searchResults.primary_photo_cropped);
+      res.render("animals/show", {searchResults});
     })
-    .catch(error => {
-      console.log(`error with 2nd api call ${error}`);
+    .catch((err) => {
+      console.log(err);
     });
-  })
-  .catch(error => {
-    console.log(`error with 1st api call ${error}`);
   });
 });
 
+app.get('/details/:id', (req, res) => {
+  let qs = {
+    params: {
+      i: req.params.id,
+    },
+  };
+  let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
+  axios.post('https://api.petfinder.com/v2/oauth2/token', d)
+  .then(accessToken => {
+    const H =
+      "Bearer " + accessToken.data.access_token;
+    const options = {
+      method: 'GET',
+      headers: {'Authorization': H},
+      url: "https://api.petfinder.com/v2/animals/" + qs.params.i
+    }; // 48815885
+    console.log("https://api.petfinder.com/v2/animals/" + qs.params.i);
+    axios(options)
+    .then((response) => {
+      console.log(response.data);
+      let animalDetails = response.data.animal;
+      console.log(animalDetails.primary_photo_cropped.full);
+      res.render("details", {animalDetails});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  });
+});
+
+
+//
+//   res.render('animals/details');
+// });
+
 // https://api.petfinder.com/v2/animals?type=dog&page=2
+// let qs = {
+//   params: {
+//     s: req.query.animalSearch
+//   },
+// };
+// console.log(qs.params.s);
 
 app.get('/', (req, res) => {
   console.log(res.locals.alerts);
@@ -114,17 +183,9 @@ app.get('/', (req, res) => {
 //   });
 // });
 
-
-
-
-
-
-
-
-
-
-
-
+// app.get('/show', (req, res) => {
+//   res.render('animals/show');
+// });
 
 
 app.get('/profile', isLoggedIn, (req, res) => {

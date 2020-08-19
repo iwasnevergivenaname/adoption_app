@@ -1,0 +1,35 @@
+<h3>this is the details page</h3>
+
+<div>
+    <h2><%= animalDetails.name %> </h2>
+    <img src="<%= animalDetails.primary_photo_cropped.full  %> " alt="cute pic" />
+</div>
+<div id="details">
+    <span>species:</span> <%= animalDetails.species %>
+    <hr />
+    <span>breeds:</span> <%= animalDetails.breeds.primary %>
+    <hr />
+    <span>age:</span> <%= animalDetails.age %>
+    <hr />
+    <span>gender:</span> <%= animalDetails.gender %>
+    <hr />
+    <span>size:</span> <%= animalDetails.size %>
+    <hr />
+    <span>coat:</span> <%= animalDetails.coat %>
+    <hr />
+    <span>colors:</span> <%= animalDetails.colors.primary %> & <%= animalDetails.colors.primary %>
+    <hr />
+    <span>spayed/neutered:</span> <%= animalDetails.attributes.spayed_neutered %>
+    <hr />
+    <span>house trained:</span> <%= animalDetails.attributes.house_trained %>
+    <hr />
+    <span>declawed:</span> <%= animalDetails.attributes.declawed %>
+    <hr />
+    <span>special needs:</span> <%= animalDetails.attributes.special_needs %>
+    <hr />
+    <span>shots current:</span> <%= animalDetails.attributes.shots_current %>
+    <hr />
+    <span>description:</span> <%= animalDetails.description %>
+    <hr />
+
+</div>
