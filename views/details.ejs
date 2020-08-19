@@ -2,7 +2,11 @@
 
 <div>
     <h2><%= animalDetails.name %> </h2>
-    <img src="<%= animalDetails.primary_photo_cropped.full %> " alt="cute pic"/>
+    <% if (animalDetails.primary_photo_cropped != null) { %>
+        <img src="<%= animalDetails.primary_photo_cropped.large %> " alt="cute pic"/>
+    <% } else { %>
+        <% console.log('no picture') %>
+    <% } %>
 </div>
 <div id="details">
     <span>species:</span> <%= animalDetails.species %>
@@ -51,6 +55,6 @@
         <input hidden type="text" name="gender" value="<%= animalDetails.gender %>">
         <input hidden type="text" name="age" value="<%= animalDetails.age %>">
         <input type="hidden" name="userId" value="<%= animalDetails.userId %>">
-        <button type="submit"></button>
+        <button type="submit">favorites</button>
 
 </div>

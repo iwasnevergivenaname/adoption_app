@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
 const session = require('express-session');
+const db = require('./models');
 const SECRET_SESSION = process.env.SECRET_SESSION;
 const API_KEY = process.env.API_KEY;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -119,21 +120,32 @@ app.get('/', (req, res) => {
   res.render('index', {alerts: res.locals.alerts});
 });
 
-app.get('/saved', (req, res) => {
-   db.pet.create({
-     name: req.body.name,
-     type: req.body.type,
-     gender: req.body.gender,
-     age: req.body.age,
-     articleId: req.body.articleId
-}).then(response => {
-  // console.log(`was this pet created? ${created}`);
-  console.log(response.get());
-}).catch(error =>{
-  console.log(error);
-})
+app.post('/saved', (req, res) => {
+  db.pet.create({
+    name: req.body.name,
+    type: req.body.type,
+    gender: req.body.gender,
+    age: req.body.age,
+    articleId: req.body.articleId
+  }).then(response => {
+    // console.log('VVVVVVVVVVV THIS IS MY RESPONSE VVVVVVVVVV');
+    // console.log(response.get());
+    // console.log('^^^^^^^^^^^ THIS IS MY RESPONSE ^^^^^^^^^^^');
+    // let savedPet = response.get();
+    res.render('saved',);
+  }).catch(error => {
+    console.log(error);
+  });
   // res.render('saved', {user: req.body.user})
-})
+});
+
+app.get('/saved', (req, res) => {
+  const savedPets = db.pet.findAll();
+  console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
+  console.log(savedPets);
+  console.log('^^^^^^^^^^^ SAVED PETS ^^^^^^^^^^^');
+  res.render("saved", {savedPets: savedPets});
+});
 
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', {user: req.user});

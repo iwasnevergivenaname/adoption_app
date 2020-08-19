@@ -1,2 +1,9 @@
 <h3>this is where you can view your saved pets</h3>
 
+
+<% savedPets.forEach(pet => { %>
+    <div class="well">
+       <h3> <%= pet.name %></h3>
+    </div>
+<% }); %>
+</body>
