@@ -8,7 +8,9 @@ router.get('/search', (req, res) => {
 });
 
 router.get('/show', (req, res) => {
-  res.render('animals/show');
+  res.render('animals/show'
+    // , {searchResults}
+    );
 });
 
 router.get('/details', (req, res) => {
