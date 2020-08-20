@@ -1,14 +1,16 @@
-//const db = require("./models");
+const db = require("./models");
 //
-// db.user_pets.create({
-//   userId: 7,
-//   petId: 1
-// }).then(response => {
-//   // console.log(`was this pet created? ${created}`);
-//   console.log(response.get());
-// }).catch(error =>{
-//   console.log(error);
-// })
+db.profile.create({
+  likes: 'fluffy animals the enjoy cuddling, the color pink',
+  dislikes: 'animals that are picky eaters',
+  bio: 'i miss my german shepherd',
+  userId: 2
+}).then(response => {
+  // console.log(`was this profile created? ${created}`);
+  console.log(response.get());
+}).catch(error =>{
+  console.log(error);
+})
 
 
 //   let formData = req.body;

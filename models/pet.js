@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   pet.init({
+    petId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     type: DataTypes.STRING,
     userId: DataTypes.INTEGER

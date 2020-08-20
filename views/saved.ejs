@@ -3,7 +3,8 @@
 
 <% savedPets.forEach(pet => { %>
     <div class="well">
-       <h3> <%= pet.name %></h3>
+        <a href="/details/<%= pet.petId %>" class="savedPets">
+        <h3><%= pet.name %></h3></a>
     </div>
 <% }); %>
 </body>

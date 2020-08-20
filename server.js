@@ -76,7 +76,7 @@ app.get("/show", (req, res) => {
     // .get("https://api.petfinder.com/v2/animals", qs)
     .then((response) => {
       let searchResults = response.data.animals;
-      console.log(searchResults);
+      // console.log(searchResults);
       // console.log(searchResults.primary_photo_cropped);
       res.render("animals/show", {searchResults});
     })
@@ -122,26 +122,24 @@ app.get('/', (req, res) => {
 
 app.post('/saved', (req, res) => {
   db.pet.create({
+    petId: req.body.petId,
     name: req.body.name,
     type: req.body.type,
-    gender: req.body.gender,
-    age: req.body.age,
-    // userId: req.body.user.id
+    // userId: req.body.userid
   }).then(response => {
     // console.log('VVVVVVVVVVV THIS IS MY RESPONSE VVVVVVVVVV');
     // console.log(response.get());
     // console.log('^^^^^^^^^^^ THIS IS MY RESPONSE ^^^^^^^^^^^');
-    // let savedPet = response.get();
-    res.render('saved', );
+    let savedPets = response.get();
+    res.render('saved', {savedPets: savedPets});
   }).catch(error => {
     console.log(error);
   });
   // res.render('saved', {user: req.body.user})
 });
 
-app.get('/saved', (req, res) => {
-
-  const savedPets = db.pet.findAll();
+app.get('/saved', async (req, res) => {
+  const savedPets = await db.pet.findAll();
   console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
   console.log(savedPets);
   console.log('^^^^^^^^^^^ SAVED PETS ^^^^^^^^^^^');
