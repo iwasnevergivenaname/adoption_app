@@ -13,6 +13,6 @@
     "database": "adoption_production",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "use_env_variable": "postgres://gppkxsykalbtsq:3c0534aa578db852a9b0bd9150c3a158ecdc8b889395b1336b6fba3c426c16f5@ec2-52-22-94-132.compute-1.amazonaws.com:5432/db9vm1aa21liin"
+    "use_env_variable": "DATABASE_URL"
   }
 }
