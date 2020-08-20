@@ -5,6 +5,69 @@ nav ul li {
 }
 
 h1 {
-  color: chartreuse;
 }
 
+body {
+  background-color: #002a3e;
+}
+
+a, a:visited {
+  color: #004d73;
+}
+
+input {
+  background-color: #848a8c;
+}
+
+.headline {
+  text-align: center;
+  color: #832561;
+
+}
+
+.welcome, .welcome-p, .signup, .login {
+  text-align: center;
+  color: #832561;
+}
+
+.login {
+  background-image: url("https://i.imgur.com/QRH4Smi.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 900px;
+  background-size: 70%;
+}
+
+.signup {
+  background-image: url("https://i.imgur.com/a87RniI.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  height: 900px;
+  background-size: 50%;
+}
+
+
+
+.welcome {
+  position: relative;
+  font-size: 300px;
+  top: -150px;
+}
+
+.returnResult {
+  color: #848a8c;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+.details-page {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  text-align: center;
+  color: #848a8c;
+  margin: 0 400px;
+}
+
+#animal-img {
+  float: left;
+}

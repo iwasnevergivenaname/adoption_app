@@ -1,100 +1,101 @@
+<body class="details-page">
 <h3>this is the details page</h3>
 
 <div>
-    <h2><%= animalDetails.name %> </h2>
+    <h2>hi! my name is <%= animalDetails.name %> </h2>
     <% if (animalDetails.primary_photo_cropped != null) { %>
-        <img src="<%= animalDetails.primary_photo_cropped.large %> " alt="cute pic"/>
+        <img src="<%= animalDetails.primary_photo_cropped.large %> " alt="cute pic" id="animal-img"/>
     <% } else { %>
         <% console.log('no picture') %>
     <% } %>
 </div>
 <div id="details">
     <% if (animalDetails.species != null) { %>
-        <span>species:</span> <%= animalDetails.species %>  <hr/>
+        <span>species:</span> <%= animalDetails.species %>  <br/>
     <% } else { %>
         <% console.log('no info on species') %>
     <% } %>
 
     <% if (animalDetails.breeds.primary!= null) { %>
-            <span>breeds:</span> <%= animalDetails.breeds.primary %> & <%= animalDetails.breeds.secondary %>  <hr/>
+            <span>breeds:</span> <%= animalDetails.breeds.primary %> & <%= animalDetails.breeds.secondary %>  <br/>
     <% } else { %>
         <% console.log('no info on breeds') %>
     <% } %>
 
     <% if (animalDetails.age != null) { %>
-            <span>age:</span> <%= animalDetails.age %>  <hr/>
+            <span>age:</span> <%= animalDetails.age %>  <br/>
     <% } else { %>
         <% console.log('no info on age') %>
     <% } %>
 
     <% if (animalDetails.gender != null) { %>
-            <span>gender:</span> <%= animalDetails.gender %>  <hr/>
+            <span>gender:</span> <%= animalDetails.gender %>  <br/>
     <% } else { %>
         <% console.log('no info on gender') %>
     <% } %>
 
     <% if (animalDetails.size != null) { %>
-            <span>size:</span> <%= animalDetails.size %>  <hr/>
+            <span>size:</span> <%= animalDetails.size %>  <br/>
     <% } else { %>
         <% console.log('no info on size') %>
     <% } %>
 
     <% if (animalDetails.coat != null) { %>
-            <span>coat:</span> <%= animalDetails.coat %>  <hr/>
+            <span>coat:</span> <%= animalDetails.coat %>  <br/>
     <% } else { %>
         <% console.log('no info on coat') %>
     <% } %>
 
     <% if (animalDetails.colors.primary != null) { %>
-        <span>colors:</span> <%= animalDetails.colors.primary %> <%= animalDetails.colors.secondary %>  <hr/>
+        <span>colors:</span> <%= animalDetails.colors.primary %> <%= animalDetails.colors.secondary %>  <br/>
     <% } else { %>
         <% console.log('no info on color') %>
     <% } %>
 
     <% if (animalDetails.environment.dogs  != null) { %>
-        <span>good around children:</span> <%= animalDetails.environment.children %>  <hr/>
+        <span>good around children:</span> <%= animalDetails.environment.children %>  <br/>
     <% } else { %>
         <% console.log('no info on if good around children') %>
     <% } %>
 
     <% if (animalDetails.environment.dogs  != null) { %>
-        <span>good around dogs:</span> <%= animalDetails.environment.dogs %>  <hr/>
+        <span>good around dogs:</span> <%= animalDetails.environment.dogs %>  <br/>
     <% } else { %>
         <% console.log('no info on if good around dogs') %>
     <% } %>
 
     <% if (animalDetails.environment.cats  != null) { %>
-        <span>good around cats:</span> <%= animalDetails.environment.cats %>  <hr/>
+        <span>good around cats:</span> <%= animalDetails.environment.cats %>  <br/>
     <% } else { %>
         <% console.log('no info on if good around cats') %>
     <% } %>
 
     <% if (animalDetails.attributes.spayed_neutered  != null) { %>
-        <span>spayed/neutered:</span> <%= animalDetails.attributes.spayed_neutered %>  <hr/>
+        <span>spayed/neutered:</span> <%= animalDetails.attributes.spayed_neutered %>  <br/>
     <% } else { %>
         <% console.log('no info on spayed or neutered') %>
     <% } %>
 
     <% if (animalDetails.attributes.house_trained != null) { %>
-        <span>house trained:</span> <%= animalDetails.attributes.house_trained %>  <hr/>
+        <span>house trained:</span> <%= animalDetails.attributes.house_trained %>  <br/>
     <% } else { %>
         <% console.log('no info on is house trained') %>
     <% } %>
 
     <% if (animalDetails.attributes.declawed != null) { %>
-        <span>declawed:</span> <%= animalDetails.attributes.declawed %>  <hr/>
+        <span>declawed:</span> <%= animalDetails.attributes.declawed %>  <br/>
     <% } else { %>
         <% console.log('no info on declawing') %>
     <% } %>
 
     <% if (animalDetails.attributes.special_needs != null) { %>
-        <span>special needs:</span> <%= animalDetails.attributes.special_needs %> <hr/>
+        <span>special needs:</span> <%= animalDetails.attributes.special_needs %> <br/>
     <% } else { %>
         <% console.log('no info on special needs') %>
     <% } %>
 
     <% if (animalDetails.attributes.shots_current != null) { %>
-        <span>shots current:</span> <%= animalDetails.attributes.shots_current %> <hr/>
+        <span>shots current:</span> <%= animalDetails.attributes.shots_current %> <br/>
     <% } else { %>
         <% console.log('no info on shots') %>
     <% } %>
@@ -102,11 +103,11 @@
 
     <a href="<%= animalDetails.url %>">
         <span>link to petfinder profile</span>
-        <hr/>
+        <br/>
     </a>
-    <span>contact:</span> email <%= animalDetails.contact.email %> or call
+    <span>email:</span> email <%= animalDetails.contact.email %> or call
     <%= animalDetails.contact.phone %>
-    <hr/>
+    <br/>
 </div>
 
 <div>
@@ -119,3 +120,4 @@
         <button type="submit">favorites</button>
 
 </div>
+</body>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,17 +12,19 @@
     <nav>
         <ul>
             <% if (!currentUser) { %>
-                <li><a href="/auth/signup">Signup</a></li>
-                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/signup">signup</a></li>
+                <li><a href="/auth/login">login</a></li>
             <% } else { %>
-                <li><a href="/auth/logout">Logout</a></li>
-                <li><a href="/profile">Profile</a></li>
+                <li><a href="/auth/logout">logout</a></li>
+                <li><a href="/profile">profile</a></li>
+                <li><a href="/animals/search">search</a></li>
             <% } %>
         </ul>
     </nav>
 </header>
-<h1>find the new love of your life</h1>
-<a href="/animals/search">search</a>
+<h1 class="headline">adopt, don't shop</h1>
+<h6 class="headline">and find the new love of your life</h6>
+
 
 <%- body %>
 </body>
