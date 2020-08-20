@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({extended: false}));
-app.use('/static', express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 app.use(layouts);
 // secret is what we give back to user to use on site (session cookie)
 app.use(session({
@@ -126,13 +126,13 @@ app.post('/saved', (req, res) => {
     type: req.body.type,
     gender: req.body.gender,
     age: req.body.age,
-    articleId: req.body.articleId
+    // userId: req.body.user.id
   }).then(response => {
     // console.log('VVVVVVVVVVV THIS IS MY RESPONSE VVVVVVVVVV');
     // console.log(response.get());
     // console.log('^^^^^^^^^^^ THIS IS MY RESPONSE ^^^^^^^^^^^');
     // let savedPet = response.get();
-    res.render('saved',);
+    res.render('saved', );
   }).catch(error => {
     console.log(error);
   });
@@ -140,6 +140,7 @@ app.post('/saved', (req, res) => {
 });
 
 app.get('/saved', (req, res) => {
+
   const savedPets = db.pet.findAll();
   console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
   console.log(savedPets);

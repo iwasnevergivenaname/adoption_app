@@ -18,7 +18,6 @@ an app for pet lovers to give a pet a new home
 | username | String | Must be provided |
 | email | String | Must be unique / used for login |
 | password | String | Stored as a hash |
-| bio | String | Not required |
 | createdAt | Date | Auto-generated |
 | updatedAt | Date | Auto-generated |
 

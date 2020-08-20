@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.user.hasMany(models.pet)    }
+      models.user.hasMany(models.pet);
+      models.user.hasOne(models.profile);
+    }
   };
   user.init({
     name: {
@@ -27,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validates: {
         len: {
-          args: [3-30],
+          args: [3 - 30],
           msg: 'username must be between 3 and 30 characters'
         }
       }
@@ -48,10 +50,6 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'password must be between 8 and 99 characters'
         }
       }
-    },
-    bio: {
-      type: DataTypes.TEXT,
-      validates: {}
     }
   }, {
     sequelize,
