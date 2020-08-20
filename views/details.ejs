@@ -1,8 +1,7 @@
 <body class="details-page">
-<h3>this is the details page</h3>
 
 <div>
-    <h2>hi! my name is <%= animalDetails.name %> </h2>
+    <h2>hi! my name is <%= animalDetails.name.toLowerCase() %> </h2>
     <% if (animalDetails.primary_photo_cropped != null) { %>
         <img src="<%= animalDetails.primary_photo_cropped.large %> " alt="cute pic" id="animal-img"/>
     <% } else { %>
@@ -16,32 +15,32 @@
         <% console.log('no info on species') %>
     <% } %>
 
-    <% if (animalDetails.breeds.primary!= null) { %>
-            <span>breeds:</span> <%= animalDetails.breeds.primary %> & <%= animalDetails.breeds.secondary %>  <br/>
+    <% if (animalDetails.breeds.primary != null) { %>
+        <span>breeds:</span> <%= animalDetails.breeds.primary %> <%= animalDetails.breeds.secondary %>  <br/>
     <% } else { %>
         <% console.log('no info on breeds') %>
     <% } %>
 
     <% if (animalDetails.age != null) { %>
-            <span>age:</span> <%= animalDetails.age %>  <br/>
+        <span>age:</span> <%= animalDetails.age %>  <br/>
     <% } else { %>
         <% console.log('no info on age') %>
     <% } %>
 
     <% if (animalDetails.gender != null) { %>
-            <span>gender:</span> <%= animalDetails.gender %>  <br/>
+        <span>gender:</span> <%= animalDetails.gender %>  <br/>
     <% } else { %>
         <% console.log('no info on gender') %>
     <% } %>
 
     <% if (animalDetails.size != null) { %>
-            <span>size:</span> <%= animalDetails.size %>  <br/>
+        <span>size:</span> <%= animalDetails.size %>  <br/>
     <% } else { %>
         <% console.log('no info on size') %>
     <% } %>
 
     <% if (animalDetails.coat != null) { %>
-            <span>coat:</span> <%= animalDetails.coat %>  <br/>
+        <span>coat:</span> <%= animalDetails.coat %>  <br/>
     <% } else { %>
         <% console.log('no info on coat') %>
     <% } %>
@@ -52,25 +51,25 @@
         <% console.log('no info on color') %>
     <% } %>
 
-    <% if (animalDetails.environment.dogs  != null) { %>
+    <% if (animalDetails.environment.dogs != null) { %>
         <span>good around children:</span> <%= animalDetails.environment.children %>  <br/>
     <% } else { %>
         <% console.log('no info on if good around children') %>
     <% } %>
 
-    <% if (animalDetails.environment.dogs  != null) { %>
+    <% if (animalDetails.environment.dogs != null) { %>
         <span>good around dogs:</span> <%= animalDetails.environment.dogs %>  <br/>
     <% } else { %>
         <% console.log('no info on if good around dogs') %>
     <% } %>
 
-    <% if (animalDetails.environment.cats  != null) { %>
+    <% if (animalDetails.environment.cats != null) { %>
         <span>good around cats:</span> <%= animalDetails.environment.cats %>  <br/>
     <% } else { %>
         <% console.log('no info on if good around cats') %>
     <% } %>
 
-    <% if (animalDetails.attributes.spayed_neutered  != null) { %>
+    <% if (animalDetails.attributes.spayed_neutered != null) { %>
         <span>spayed/neutered:</span> <%= animalDetails.attributes.spayed_neutered %>  <br/>
     <% } else { %>
         <% console.log('no info on spayed or neutered') %>
@@ -100,13 +99,12 @@
         <% console.log('no info on shots') %>
     <% } %>
 
-
-    <a href="<%= animalDetails.url %>">
+    <a href="<%= animalDetails.url %>" target="_blank">
         <span>link to petfinder profile</span>
         <br/>
     </a>
-    <span>email:</span> email <%= animalDetails.contact.email %> or call
-    <%= animalDetails.contact.phone %>
+    <span>email:</span> <%= animalDetails.contact.email %> <br>
+    <span>call:</span> <%= animalDetails.contact.phone %>
     <br/>
 </div>
 
@@ -117,7 +115,7 @@
         <input hidden type="text" name="gender" value="<%= animalDetails.gender %>">
         <input hidden type="text" name="age" value="<%= animalDetails.age %>">
         <input type="hidden" name="userId" value="<%= animalDetails.userId %>">
-        <button type="submit">favorites</button>
-
+        <button type="submit">save</button>
+    </form>
 </div>
 </body>

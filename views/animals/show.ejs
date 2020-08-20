@@ -1,11 +1,14 @@
-<h3>this is the show page</h3>
 <div class="search-page">
     <% if (searchResults) { %> <% searchResults.forEach(animal => { %>
         <div>
 
             <a href="/details/<%= animal.id %> " class="returnResult">
-                <h3><%= animal.name.toLowerCase() %> is <%= animal.age.toLowerCase() %> age
-                    and <%= animal.size.toLowerCase() %> sized</h3>
+                <h3><%= animal.name.toLowerCase() %>: <%= animal.age.toLowerCase() %>,
+                    <%= animal.size.toLowerCase() %> sized
+                <%= animal.gender.toLowerCase() %>  <%= animal.species.toLowerCase() %>
+
+                </h3>
+
             </a>
 
         </div>

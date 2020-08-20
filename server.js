@@ -70,7 +70,7 @@ app.get("/show", (req, res) => {
     const options = {
       method: 'GET',
       headers: {'Authorization': H},
-      url: "https://api.petfinder.com/v2/animals?type=" + qs.params.s + "&page=4"
+      url: "https://api.petfinder.com/v2/animals?type=" + qs.params.s
     };
     axios(options)
     // .get("https://api.petfinder.com/v2/animals", qs)
