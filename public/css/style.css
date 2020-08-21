@@ -47,7 +47,17 @@ input {
   background-size: 50%;
 }
 
+#dog {
+  height: 200px;
+  width: 200px;
+  /*background-image: url("https://lorempixel.com/420/320/abstract/1/Sample");*/
+}
 
+#animalSearch {
+  height: 200px;
+  width: 200px;
+  background-image: url("https://lorempixel.com/420/320/abstract/1/Sample");
+}
 
 .welcome {
   position: relative;

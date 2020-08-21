@@ -1,7 +1,7 @@
 <body class="details-page">
 
 <div>
-    <h2>hi! my name is <%= animalDetails.name.toLowerCase() %> (<%= animalDetails.id%>) </h2>
+    <h2>hi! my name is <%= animalDetails.name.toLowerCase() %> </h2>
     <% if (animalDetails.primary_photo_cropped != null) { %>
         <img src="<%= animalDetails.primary_photo_cropped.large %> " alt="cute pic" id="animal-img"/>
     <% } else { %>
@@ -9,6 +9,7 @@
     <% } %>
 </div>
 <div id="details">
+
     <% if (animalDetails.species != null) { %>
         <span>species:</span> <%= animalDetails.species %>  <br/>
     <% } else { %>
@@ -113,7 +114,7 @@
         <input hidden type="text" name="petId" value="<%= animalDetails.id %>">
         <input hidden type="text" name="name" value="<%= animalDetails.name %>">
         <input hidden type="text" name="type" value="<%= animalDetails.type %>">
-        <input type="hidden" name="userId" value="<%= animalDetails.userId %>">
+        <input type="hidden" name="userId" value="<%= user.id %>">
         <button type="submit">save</button>
     </form>
 </div>

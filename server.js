@@ -6,9 +6,9 @@ const db = require('./models');
 const SECRET_SESSION = process.env.SECRET_SESSION;
 const API_KEY = process.env.API_KEY;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 const passport = require('./config/ppConfig');
 const axios = require('axios');
+const methodOverride = require('method-override');
 const app = express();
 const flash = require('connect-flash');
 // const request = require('request');
@@ -21,6 +21,7 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use('/public', express.static(__dirname + '/public'));
+app.use(methodOverride("_method"));
 app.use(layouts);
 // secret is what we give back to user to use on site (session cookie)
 app.use(session({
@@ -44,15 +45,6 @@ app.use((req, res, next) => {
 app.get('/animals/search', (req, res) => {
   res.render('animals/search');
 });
-// .catch(error => {
-//   console.log(`error with 2nd api call ${error}`);
-// });
-// })
-// .catch(error => {
-//   console.log(`error with 1st api call ${error}`);
-// });
-// })
-// ;
 
 app.get("/show", (req, res) => {
   // qs means query string
@@ -107,7 +99,7 @@ app.get('/details/:id', (req, res) => {
     .then((response) => {
       console.log(response.data);
       let animalDetails = response.data.animal;
-      res.render("details", {animalDetails});
+      res.render("details", {animalDetails, user: req.user});
     })
     .catch((err) => {
       console.log(err);
@@ -125,13 +117,13 @@ app.post('/saved', (req, res) => {
     petId: req.body.petId,
     name: req.body.name,
     type: req.body.type,
-    // userId: req.body.userid
+    userId: req.body.userId
   }).then(response => {
     // console.log('VVVVVVVVVVV THIS IS MY RESPONSE VVVVVVVVVV');
     // console.log(response.get());
     // console.log('^^^^^^^^^^^ THIS IS MY RESPONSE ^^^^^^^^^^^');
     let savedPets = response.get();
-    res.render('saved', {savedPets: savedPets});
+    res.redirect('/saved');
   }).catch(error => {
     console.log(error);
   });
@@ -140,14 +132,32 @@ app.post('/saved', (req, res) => {
 
 app.get('/saved', async (req, res) => {
   const savedPets = await db.pet.findAll();
-  console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
-  console.log(savedPets);
-  console.log('^^^^^^^^^^^ SAVED PETS ^^^^^^^^^^^');
+  // console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
+  // console.log(savedPets);
+  // console.log('^^^^^^^^^^^ SAVED PETS ^^^^^^^^^^^');
   res.render("saved", {savedPets: savedPets});
 });
 
-app.get('/profile', isLoggedIn, (req, res) => {
+app.get('/profile', isLoggedIn, async (req, res) => {
+  const userProfile = await db.profile.findOne({
+    where: {userId: 2},
+    include: [db.user]
+  })
+  // console.log(userProfile);
   res.render('profile', {user: req.user});
+});
+
+app.delete("/saved", async  (req, res) => {
+  try {
+    await db.pet.destroy({
+      where: {
+        name: req.body.name
+      },
+    });
+    res.redirect("/saved");
+  } catch(error) {
+    res.render(error);
+  }
 });
 
 app.use('/auth', require('./routes/auth'));
