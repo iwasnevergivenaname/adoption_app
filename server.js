@@ -103,10 +103,12 @@ app.get('/details/:id', (req, res) => {
       let animalDetails = response.data.animal;
       res.render("details", {animalDetails, user: req.user});
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(error => {
+      console.log(`error with second detail api call ${error}`);
     });
-  });
+  }).catch(error => {
+    console.log(`error with first detail api call ${error}`)
+  })
 });
 
 app.get('/', (req, res) => {
