@@ -52,8 +52,8 @@ input {
 }
 
 .animalSearch {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   background-image: url("https://lorempixel.com/420/320/abstract/1/Sample");
   margin: 20px 225px;
 }

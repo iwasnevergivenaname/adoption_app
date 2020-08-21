@@ -4,7 +4,7 @@
 <% savedPets.forEach(pet => { %>
     <div class="well">
         <a href="/details/<%= pet.petId %>" class="savedPets">
-        <h3><%= pet.name.toLowerCase() %></h3></a>
+        <h3><%= pet.name.toLowerCase() %></h3></a> <%= pet.userId%>
         <form method="POST" action="/saved?_method=DELETE">
             <input type="hidden" name="name" value="<%= pet.name%>">
             <button id="remove" class="removePet" type="submit">remove</button>

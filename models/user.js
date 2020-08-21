@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       models.user.hasMany(models.pet);
-      models.user.hasOne(models.profile);
+      models.user.hasMany(models.resource);
     }
   };
   user.init({
@@ -50,7 +50,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'password must be between 8 and 99 characters'
         }
       }
-    }
+    },
+    bio: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'user',

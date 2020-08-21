@@ -76,8 +76,8 @@ app.get("/show", (req, res) => {
       console.log(`error with second api call ${error}`);
     });
   }).catch(error => {
-    console.log(`error from first api call ${error}`)
-  })
+    console.log(`error from first api call ${error}`);
+  });
 });
 
 app.get('/details/:id', (req, res) => {
@@ -107,8 +107,8 @@ app.get('/details/:id', (req, res) => {
       console.log(`error with second detail api call ${error}`);
     });
   }).catch(error => {
-    console.log(`error with first detail api call ${error}`)
-  })
+    console.log(`error with first detail api call ${error}`);
+  });
 });
 
 app.get('/', (req, res) => {
@@ -135,23 +135,46 @@ app.post('/saved', (req, res) => {
 });
 
 app.get('/saved', async (req, res) => {
-  const savedPets = await db.pet.findAll();
+  const savedPets = await db.pet.findAll({
+    where: {userId: req.user.id},
+    include: [db.user]
+  });
   // console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
   // console.log(savedPets);
   // console.log('^^^^^^^^^^^ SAVED PETS ^^^^^^^^^^^');
-  res.render("saved", {savedPets: savedPets});
+  res.render("saved", {savedPets, user: req.user});
 });
 
+
 app.get('/profile', isLoggedIn, async (req, res) => {
-  const userProfile = await db.profile.findOne({
-    where: {userId: 2},
-    include: [db.user]
-  })
+  const userProfile = await db.user.findOne({
+    // where: {id: req.body.id},
+    // include: [db.user]
+  });
   // console.log(userProfile);
   res.render('profile', {user: req.user});
 });
 
-app.delete("/saved", async  (req, res) => {
+app.get('/edit', (req, res) => {
+  res.render('edit', {user: req.user});
+});
+
+app.put('/profile', async (req, res) => {
+  console.log('hit put route');
+  db.user.findByPk(req.user.id)
+  .then(user => {
+    user.bio = req.body.userBio;
+    // await
+    user.save();
+  // console.log(req.query.userBio);
+    res.redirect("/profile");
+  })
+  .catch(error => {
+    console.log(`error with ${error}`)
+  })
+});
+
+app.delete("/saved", async (req, res) => {
   try {
     await db.pet.destroy({
       where: {
@@ -159,10 +182,23 @@ app.delete("/saved", async  (req, res) => {
       },
     });
     res.redirect("/saved");
-  } catch(error) {
+  } catch (error) {
     res.render(error);
   }
 });
+
+// const jane = await User.create({ name: "Jane" });
+// console.log(jane.name); // "Jane"
+// jane.name = "Ada";
+// // the name is still "Jane" in the database
+// await jane.save();
+// // Now the name was updated to "Ada" in the database!
+// Deleting an instance
+// You can delete an instance by calling destroy:
+//
+//   const jane = await User.create({ name: "Jane" });
+// console.log(jane.name); // "Jane"
+// await jane.destroy();
 
 app.use('/auth', require('./routes/auth'));
 app.use('/animals', require('./routes/animals'));
