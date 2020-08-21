@@ -72,10 +72,12 @@ app.get("/show", (req, res) => {
       // console.log(searchResults.primary_photo_cropped);
       res.render("animals/show", {searchResults});
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(error => {
+      console.log(`error with second api call ${error}`);
     });
-  });
+  }).catch(error => {
+    console.log(`error from first api call ${error}`)
+  })
 });
 
 app.get('/details/:id', (req, res) => {
