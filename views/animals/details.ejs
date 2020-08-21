@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="../../public/css/style.css">
+</head>
 <body class="details-page">
 
 <div>
@@ -110,7 +113,7 @@
 </div>
 
 <div>
-    <form method="POST" action="/saved">
+    <form method="POST" action="/animals/saved">
         <input hidden type="text" name="petId" value="<%= animalDetails.id %>">
         <input hidden type="text" name="name" value="<%= animalDetails.name %>">
         <input hidden type="text" name="type" value="<%= animalDetails.type %>">

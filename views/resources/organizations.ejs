@@ -1,0 +1,20 @@
+this is a page to display the search results for oragnizations
+
+<div class="org-page">
+
+    <% if (orgResults) { %> <% orgResults.forEach(org => { %>
+        <div>
+
+            <a href="/orgs/<%= org.id %> " class="returnResult">
+                <h3><%= org.name.toLowerCase() %>
+
+                </h3>
+
+            </a>
+
+        </div>
+    <% }); %>
+    <% } else { %>
+        <div>nothing found</div>
+    <% } %>
+</div>

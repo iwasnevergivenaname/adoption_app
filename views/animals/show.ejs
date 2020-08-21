@@ -4,7 +4,7 @@
     <% if (searchResults) { %> <% searchResults.forEach(animal => { %>
         <div>
 
-            <a href="/details/<%= animal.id %> " class="returnResult">
+            <a href="/animals/details/<%= animal.id %> " class="returnResult">
                 <h3><%= animal.name.toLowerCase() %>: <%= animal.age.toLowerCase() %>,
                     <%= animal.size.toLowerCase() %> sized
                 <%= animal.gender.toLowerCase() %>  <%= animal.species.toLowerCase() %>

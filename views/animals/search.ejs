@@ -1,5 +1,5 @@
 <body id="searchPage">
-<form method="GET" action="/show">
+<form method="GET" action="/animals/show">
     <label for="animalSearch">search by species:</label><br><br><br>
     <input id="dog" class="animalSearch" type="submit" name="animalSearch" value="dog">
     <input id="cat" class="animalSearch" type="submit" name="animalSearch" value="cat">
@@ -10,5 +10,12 @@
     <input id="scales-fins-other" class="animalSearch" type="submit" name="animalSearch" value="scales-fins-other">
     <input id="barnyard" class="animalSearch" type="submit" name="animalSearch" value="barnyard">
 
+</form>
+
+
+<form action="/organizations" method="GET">
+    <label for="orgSearch">search organizations by location:</label>
+    <input id="orgSearch" type="text" name="orgSearch">
+    <input type="submit" value="search">
 </form>
 </body>

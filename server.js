@@ -11,10 +11,6 @@ const axios = require('axios');
 const methodOverride = require('method-override');
 const app = express();
 const flash = require('connect-flash');
-// const request = require('request');
-
-//require authorization of middleware
-const isLoggedIn = require('./middleware/isLoggedIn');
 
 app.set('view engine', 'ejs');
 
@@ -46,162 +42,16 @@ app.get('/animals/search', (req, res) => {
   res.render('animals/search');
 });
 
-app.get("/show", (req, res) => {
-  // qs means query string
-  let qs = {
-    params: {
-      s: req.query.animalSearch,
-    },
-  };
-  console.log(qs.params.s);
-  let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
-  axios.post('https://api.petfinder.com/v2/oauth2/token', d)
-  .then(accessToken => {
-    const H =
-      "Bearer " + accessToken.data.access_token;
-    const options = {
-      method: 'GET',
-      headers: {'Authorization': H},
-      url: "https://api.petfinder.com/v2/animals?type=" + qs.params.s
-    };
-    axios(options)
-    // .get("https://api.petfinder.com/v2/animals", qs)
-    .then((response) => {
-      let searchResults = response.data.animals;
-      // console.log(searchResults);
-      // console.log(searchResults.primary_photo_cropped);
-      res.render("animals/show", {searchResults});
-    })
-    .catch(error => {
-      console.log(`error with second api call ${error}`);
-    });
-  }).catch(error => {
-    console.log(`error from first api call ${error}`);
-  });
-});
-
-app.get('/details/:id', (req, res) => {
-  let qs = {
-    params: {
-      i: req.params.id,
-    },
-  };
-  let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
-  axios.post('https://api.petfinder.com/v2/oauth2/token', d)
-  .then(accessToken => {
-    const H =
-      "Bearer " + accessToken.data.access_token;
-    const options = {
-      method: 'GET',
-      headers: {'Authorization': H},
-      url: "https://api.petfinder.com/v2/animals/" + qs.params.i
-    }; // 48815885
-    console.log("https://api.petfinder.com/v2/animals/" + qs.params.i);
-    axios(options)
-    .then((response) => {
-      console.log(response.data);
-      let animalDetails = response.data.animal;
-      res.render("details", {animalDetails, user: req.user});
-    })
-    .catch(error => {
-      console.log(`error with second detail api call ${error}`);
-    });
-  }).catch(error => {
-    console.log(`error with first detail api call ${error}`);
-  });
-});
 
 app.get('/', (req, res) => {
   console.log(res.locals.alerts);
   res.render('index', {alerts: res.locals.alerts});
 });
 
-app.post('/saved', (req, res) => {
-  db.pet.create({
-    petId: req.body.petId,
-    name: req.body.name,
-    type: req.body.type,
-    userId: req.body.userId
-  }).then(response => {
-    // console.log('VVVVVVVVVVV THIS IS MY RESPONSE VVVVVVVVVV');
-    // console.log(response.get());
-    // console.log('^^^^^^^^^^^ THIS IS MY RESPONSE ^^^^^^^^^^^');
-    let savedPets = response.get();
-    res.redirect('/saved');
-  }).catch(error => {
-    console.log(error);
-  });
-  // res.render('saved', {user: req.body.user})
-});
-
-app.get('/saved', async (req, res) => {
-  const savedPets = await db.pet.findAll({
-    where: {userId: req.user.id},
-    include: [db.user]
-  });
-  // console.log('VVVVVVVVVVV SAVED PETS VVVVVVVVVV');
-  // console.log(savedPets);
-  // console.log('^^^^^^^^^^^ SAVED PETS ^^^^^^^^^^^');
-  res.render("saved", {savedPets, user: req.user});
-});
-
-
-app.get('/profile', isLoggedIn, async (req, res) => {
-  const userProfile = await db.user.findOne({
-    // where: {id: req.body.id},
-    // include: [db.user]
-  });
-  // console.log(userProfile);
-  res.render('profile', {user: req.user});
-});
-
-app.get('/edit', (req, res) => {
-  res.render('edit', {user: req.user});
-});
-
-app.put('/profile', async (req, res) => {
-  console.log('hit put route');
-  db.user.findByPk(req.user.id)
-  .then(user => {
-    user.bio = req.body.userBio;
-    // await
-    user.save();
-  // console.log(req.query.userBio);
-    res.redirect("/profile");
-  })
-  .catch(error => {
-    console.log(`error with ${error}`)
-  })
-});
-
-app.delete("/saved", async (req, res) => {
-  try {
-    await db.pet.destroy({
-      where: {
-        name: req.body.name
-      },
-    });
-    res.redirect("/saved");
-  } catch (error) {
-    res.render(error);
-  }
-});
-
-// const jane = await User.create({ name: "Jane" });
-// console.log(jane.name); // "Jane"
-// jane.name = "Ada";
-// // the name is still "Jane" in the database
-// await jane.save();
-// // Now the name was updated to "Ada" in the database!
-// Deleting an instance
-// You can delete an instance by calling destroy:
-//
-//   const jane = await User.create({ name: "Jane" });
-// console.log(jane.name); // "Jane"
-// await jane.destroy();
-
 app.use('/auth', require('./routes/auth'));
 app.use('/animals', require('./routes/animals'));
+app.use('/organizations', require('./routes/orgs'));
+app.use('/profile', require('./routes/profile'));
 
 const port = process.env.PORT || 4200;
 const server = app.listen(port, () => {
