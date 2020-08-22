@@ -1,0 +1,18 @@
+<div class="resourcePage">
+
+    SAVED RESROUCES
+
+    <% savedOrgs.forEach(org => { %>
+        <div>
+
+            <a href="/organizations/kept/<%= org.url %> " class="resourceUrl">
+                <h3><%= org.name.toLowerCase() %></h3>
+            </a>
+
+        </div>
+
+    <% }) %>
+</div>
+
+
+

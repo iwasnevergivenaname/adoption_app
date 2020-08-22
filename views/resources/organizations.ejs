@@ -4,13 +4,17 @@ this is a page to display the search results for oragnizations
 
     <% if (orgResults) { %> <% orgResults.forEach(org => { %>
         <div>
-
-            <a href="/orgs/<%= org.id %> " class="returnResult">
-                <h3><%= org.name.toLowerCase() %>
-
-                </h3>
-
-            </a>
+            <h3><a href="<%= org.url %>"><%= org.name %></a>
+                <%= org.email %>
+                <%= org.phone %>
+                <%= org.id %>
+            </h3>
+            <form method="POST" action="/organizations/kept">
+                <input hidden type="text" name="orgId" value="<%= org.id %>">
+                <input hidden type="text" name="name" value="<%= org.name %>">
+                <input type="hidden" name="userId" value="<%= user.id %>">
+                <button type="submit">save</button>
+            </form>
 
         </div>
     <% }); %>

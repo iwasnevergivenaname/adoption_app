@@ -32,14 +32,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-//   before every route we will attach our current user to res.local
   res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
   next();
 });
 
-app.get('/animals/search', (req, res) => {
-  res.render('animals/search');
+app.get('/search', (req, res) => {
+  res.render('search');
 });
 
 

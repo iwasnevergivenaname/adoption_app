@@ -28,10 +28,9 @@ router.get('/edit', (req, res) => {
 router.put('/view', async (req, res) => {
   console.log('hit put route');
   db.user.findByPk(req.user.id)
-  .then(user => {
+  .then(async (user) => {
     user.bio = req.body.userBio;
-    // await
-    user.save();
+    await user.save();
     // console.log(req.query.userBio);
     res.redirect("/profile/view");
   })

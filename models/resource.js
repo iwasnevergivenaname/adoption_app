@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   resource.init({
-    orgId: DataTypes.INTEGER,
-    name: DataTypes.STRING
+    orgId: DataTypes.STRING,
+    name: DataTypes.STRING,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'resource',
