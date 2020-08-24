@@ -18,6 +18,8 @@ router.get('/show', (req, res) => {
     },
   };
   // console.log(qs.params.s);
+  console.log(API_KEY);
+  console.log(CLIENT_SECRET);
   let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
   axios.post('https://api.petfinder.com/v2/oauth2/token', d)
   .then(accessToken => {
