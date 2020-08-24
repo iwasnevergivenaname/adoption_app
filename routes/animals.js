@@ -21,6 +21,7 @@ router.get('/show', (req, res) => {
   let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
   axios.post('https://api.petfinder.com/v2/oauth2/token', d)
   .then(accessToken => {
+  console.log(`looking to see where the hang up is`)
     const H =
       "Bearer " + accessToken.data.access_token;
     const options = {
