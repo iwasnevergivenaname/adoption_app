@@ -34,6 +34,9 @@ both of those searches will show a list, and you can save individual items to yo
 individual users so users can access their saved data. this is seen at the top of the page under 
 "saved animals" and "saved resources".
 
+## To run on your machine
+run `npm i` in your terminal to install dependencies 
+
 
 # Models
 

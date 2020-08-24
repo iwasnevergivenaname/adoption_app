@@ -5,9 +5,10 @@ this is a page to display the search results for oragnizations
     <% if (orgResults) { %> <% orgResults.forEach(org => { %>
         <div>
             <h3><a href="<%= org.url %>"><%= org.name %></a>
-                <%= org.email %>
-                <%= org.phone %>
-                <%= org.id %>
+                <br>
+                <%= org.email %><br>
+                <%= org.phone %><br>
+                <a href="<%= org.url %>">check out the website</a>
             </h3>
             <form method="POST" action="/organizations/kept">
                 <input hidden type="text" name="orgId" value="<%= org.id %>">
@@ -15,7 +16,7 @@ this is a page to display the search results for oragnizations
                 <input type="hidden" name="userId" value="<%= user.id %>">
                 <button type="submit">save</button>
             </form>
-
+            <hr>
         </div>
     <% }); %>
     <% } else { %>
