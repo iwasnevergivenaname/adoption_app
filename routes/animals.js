@@ -17,7 +17,7 @@ router.get('/show', (req, res) => {
       s: req.query.animalSearch,
     },
   };
-  console.log(qs.params.s);
+  // console.log(qs.params.s);
   let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
   axios.post('https://api.petfinder.com/v2/oauth2/token', d)
   .then(accessToken => {
@@ -28,7 +28,7 @@ router.get('/show', (req, res) => {
       headers: {'Authorization': H},
       url: "https://api.petfinder.com/v2/animals?type=" + qs.params.s
     };
-    console.log("THIS IS THE ANIMALS CALL https://api.petfinder.com/v2/animals?type=" + qs.params.s)
+    // console.log("THIS IS THE ANIMALS CALL https://api.petfinder.com/v2/animals?type=" + qs.params.s)
     axios(options)
     // .get("https://api.petfinder.com/v2/animals", qs)
     .then((response) => {
