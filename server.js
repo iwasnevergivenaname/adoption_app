@@ -58,4 +58,9 @@ const server = app.listen(port, () => {
   console.log(`🎧 You're listening to the smooth sounds of port ${port} 🎧`);
 });
 
+app.get('*', (req, res) => {
+  res.render('error');
+});
+
+
 module.exports = server;
