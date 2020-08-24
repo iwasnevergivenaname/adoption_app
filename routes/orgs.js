@@ -68,37 +68,6 @@ router.get('/kept', async (req, res) => {
   res.render("resources/kept", {savedOrgs, user: req.user});
 });
 
-// router.get('/:id', (req, res) => {
-//   let qs = {
-//     params: {
-//       i: req.params.id,
-//     },
-//   };
-//   let d = `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${CLIENT_SECRET}`;
-//   axios.post('https://api.petfinder.com/v2/oauth2/token', d)
-//   .then(accessToken => {
-//     const H =
-//       "Bearer " + accessToken.data.access_token;
-//     const options = {
-//       method: 'GET',
-//       headers: {'Authorization': H},
-//       url: "https://api.petfinder.com/v2/organizations/" + qs.params.i
-//     };
-//     console.log("THIS IS THE ORG ID CALL https://api.petfinder.com/v2/organizations/" + qs.params.i);
-//     axios(options)
-//     .then((response) => {
-//       console.log(`THIS IS TEH RESPONSE DATA  FOR ORG ID ${response.data}`);
-//       let orgDetails = response.data.organizations;
-//       console.log(`THIS IS TEH  ORG ID DETAILS ${orgDetails}`)
-//       res.render("resources/org", {orgDetails, user: req.user});
-//     })
-//     .catch(error => {
-//       console.log(`error with second detail api call ${error}`);
-//     });
-//   }).catch(error => {
-//     console.log(`error with first detail api call ${error}`);
-//   });
-// });
 
 
 module.exports = router;

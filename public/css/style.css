@@ -1,120 +1,145 @@
-nav ul li {
-  text-decoration: none;
-  display: inline-block;
-  margin-right: .3em;
-}
-
 h1 {
 }
 
 body {
-  text-align: center;
-  background-color: #dcdcdb;
+    text-align: center;
+    background-color: #dcdcdb;
 }
 
 a, a:visited {
-  color: #004d73;
+    color: #848a8c;
+}
+
+.nav-link {
+
 }
 
 input {
-  background-color: #848a8c;
+    background-color: #848a8c;
 }
 
 .headline {
-  text-align: center;
-  color: #832561;
+    text-align: center;
+    color: #a78c84;
 
 }
 
 .welcome, .welcome-p, .signup, .login {
-  text-align: center;
-  color: #832561;
+    text-align: center;
+}
+
+.welcome, .welcome-p {
+    color: #832561;
+}
+
+.signup, .login {
+    color: #00334e;
 }
 
 .login {
-  background-image: url("https://i.imgur.com/QRH4Smi.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 900px;
-  background-size: 70%;
+    background-image: url("https://i.imgur.com/QRH4Smi.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 900px;
+    background-size: 70%;
 }
 
 .signup {
-  background-image: url("https://i.imgur.com/a87RniI.png");
-  background-position: left;
-  background-repeat: no-repeat;
-  height: 900px;
-  background-size: 50%;
+    background-image: url("https://i.imgur.com/a87RniI.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    height: 900px;
+    background-size: 50%;
 }
 
 #searchPage {
- /*position: fixed;*/
+    color: #00334e;
 }
 
+/* these are my animal searches. they only look good at around 90% screen zoom*/
+
 .animalSearch {
-  height: 150px;
-  width: 150px;
-  background-image: url("https://lorempixel.com/420/320/abstract/1/Sample");
-  margin: 20px 225px;
+    height: 200px;
+    width: 200px;
+    color: transparent;
+    margin: 20px 225px;
+    background-color: #dcdcdb;
+    border: none;
 }
 
 #dog {
-  float: left;
-  /*height: 200px;*/
-  /*width: 200px;*/
-  /*left: 200px;*/
-  /*background-image: url("https://lorempixel.com/420/320/abstract/1/Sample");*/
+    float: left;
+    background-image: url("https://i.imgur.com/bQEkQT6.png");
+    background-size: cover;
 }
 
 #cat {
-
+    background-image: url("https://i.imgur.com/EtLEtrz.png");
+    background-size: cover;
 }
 
 #rabbit {
-float: right;
-}
-
-#small-furry {
-
+    float: right;
+    background-image: url("https://i.imgur.com/4yWUguD.png");
+    background-size: 85%;
+    background-repeat: no-repeat;
 }
 
 #horse {
-
-}
-
-#bird {
-float: left;
-}
-
-#scales-fins-other {
-
+    background-image: url("https://i.imgur.com/q13wckh.png");
+    background-size: cover;
+    width: 310px;
+    height: 250px;
 }
 
 #barnyard {
-float: right;
+    background-image: url("https://i.imgur.com/KMpRs8t.png");
+    background-size: cover;
+    width: 300px;
+    height: 250px;
 }
 
+#bird {
+    background-image: url("https://i.imgur.com/mCQzcbT.png");
+    background-size: cover;
+    float: left;
+}
+
+#small-furry {
+    background-image: url("https://i.imgur.com/cybC0No.png");
+    background-size: cover;
+}
+
+#scales-fins-other {
+    float: right;
+    background-image: url("https://i.imgur.com/Zt2rH8W.png");
+    background-size: cover;
+}
 
 .welcome {
-  position: relative;
-  font-size: 300px;
-  top: -150px;
+    position: relative;
+    font-size: 300px;
+    /*top: 350px;*/
+}
+
+.welcome-p {
+    margin: 50px 100px;
 }
 
 .returnResult {
-  color: #848a8c;
-  font-family: sans-serif;
-  font-size: 15px;
+    color: #848a8c;
+    font-family: sans-serif;
+    font-size: 15px;
 }
 
 .details-page {
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  text-align: center;
-  color: #848a8c;
-  margin: 0 400px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    text-align: center;
+    color: #848a8c;
+    margin: 0 400px;
 }
 
 #animal-img {
-  float: left;
+    float: left;
 }

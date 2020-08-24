@@ -37,15 +37,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/search', (req, res) => {
-  res.render('search');
-});
-
 
 app.get('/', (req, res) => {
   console.log(res.locals.alerts);
   res.render('index', {alerts: res.locals.alerts});
 });
+
+app.get('/search', (req, res) => {
+  res.render('search');
+});
+
 
 app.use('/auth', require('./routes/auth'));
 app.use('/animals', require('./routes/animals'));
