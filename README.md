@@ -28,7 +28,7 @@ anything you like. as of right now, no other user will be able to see your profi
 press the "search" tab at the top, this will bring you to a page where you see animal icons and a search box at the bottom.
 click whatever type of animal you would like to search for, then you'll be redirected to the results.
 
-or type in the name of a state into the bottom search bar to find organizations and res sources near you.
+or type in the name of a state into the bottom search bar to find organizations and resources near you.
 
 both of those searches will show a list, and you can save individual items to your own tables. the tables connect to the 
 individual users so users can access their saved data. this is seen at the top of the page under 
