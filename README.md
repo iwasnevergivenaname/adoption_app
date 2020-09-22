@@ -37,6 +37,7 @@ individual users so users can access their saved data. this is seen at the top o
 ## To run on your machine
 run `npm i` in your terminal to install dependencies 
 
+<!-- Either here or up where you mention the API, I might remind whoever might want to run this on their local machine that they need to get an API key, or at least allude to what's in the .env file and why.  -->
 
 # Models
 
@@ -133,7 +134,9 @@ run `npm i` in your terminal to install dependencies
 | PUT | /profile/view | profile.js | Update user table with new bio |
 
 
-// I don't know if it's just a personal preference but I'd like to see something personal around here, at the end. Just a few sentences talking about victories struggles, an explanation of some intricate snippets or interesting tech.
-Other than that, seems pretty thorough and easily read.
+<!-- I don't know if it's just a personal preference but I'd like to see something personal around here, at the end. Just a few sentences talking about victories struggles, an explanation of some intricate snippets or interesting tech.
+Other than that, seems pretty thorough and easily read. -->
+
+<!-- In general, I LOVE how clean your code is. I don't know if this is a priority for you but in terms of code legibility, I believe some more pseudocode would go along way. -->
 
 
