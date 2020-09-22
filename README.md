@@ -133,3 +133,7 @@ run `npm i` in your terminal to install dependencies
 | PUT | /profile/view | profile.js | Update user table with new bio |
 
 
+// I don't know if it's just a personal preference but I'd like to see something personal around here, at the end. Just a few sentences talking about victories struggles, an explanation of some intricate snippets or interesting tech.
+Other than that, seems pretty thorough and easily read.
+
+
